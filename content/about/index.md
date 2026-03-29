@@ -1,20 +1,16 @@
 ---
-title: "关于我"
-description: "LLM 算法工程师 / 摄影爱好者"
+title: "关于"
+description: "一些文字，一些光影，一些胡思乱想"
 showDate: false
 showReadingTime: false
 showWordCount: false
 showAuthor: false
 showTableOfContents: false
+heroStyle: "background"
 ---
 
-## Hi, I'm Whiplash
+写字是为了留住那些转瞬即逝的念头，拍照是为了留住那些不会再来的光。
 
-AI 搜索方向的 LLM 算法工程师，业余时间在系统性精进几个爱好：
+这里没有什么宏大叙事，只是一个普通人在工作与生活的间隙里，试着把日子过得再认真一点。偶尔聊聊大模型背后那些有趣的直觉，偶尔分享一张还算满意的照片，更多时候，只是随手记下此刻的心情。
 
-- **摄影** — 哈苏 X2D / 501CM、莱卡 MP、尼康 F3
-- **吉他** — 指弹方向，从零开始
-- **阅读与写作** — 读得多，写得少，正在改变
-- **徒步** — 长期目标，结合摄影探索世界
-
-这个博客记录我在 LLM 技术和摄影方面的思考与实践。
+如果你恰好路过，欢迎坐坐。

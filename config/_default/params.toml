@@ -1,4 +1,4 @@
-colorScheme = "blowfish"
+colorScheme = "ocean"
 defaultAppearance = "dark"
 autoSwitchAppearance = true
 
@@ -6,6 +6,10 @@ enableSearch = true
 enableCodeCopy = true
 
 disableImageOptimization = false
+
+mainSections = ["writing", "llm", "photography"]
+# defaultBackgroundImage = "img/hero.jpg"
+# defaultFeaturedImage = "img/hero.jpg"
 
 [header]
   layout = "fixed-fill-blur"
@@ -18,21 +22,24 @@ disableImageOptimization = false
   showScrollToTop = true
 
 [homepage]
-  layout = "profile"
+  layout = "background"
+  # homepageImage = "img/hero.jpg"
   showRecent = true
   showRecentItems = 6
   showMoreLink = true
   showMoreLinkDest = "/posts/"
   cardView = true
   cardViewScreenWidth = false
+  layoutBackgroundBlur = true
 
 [article]
   showDate = true
   showDateUpdated = true
   showAuthor = true
   showHero = true
-  heroStyle = "thumbAndBackground"
+  heroStyle = "background"
   layoutBackgroundBlur = true
+  layoutBackgroundHeaderSpace = true
   showBreadcrumbs = true
   showEdit = false
   showHeadingAnchors = true
@@ -43,13 +50,14 @@ disableImageOptimization = false
   relatedContentLimit = 3
   showTaxonomies = true
   showWordCount = true
-  sharingLinks = ["twitter", "reddit", "linkedin"]
+  sharingLinks = []
   showZenMode = true
 
 [list]
   showHero = true
   heroStyle = "background"
   layoutBackgroundBlur = true
+  layoutBackgroundHeaderSpace = true
   showBreadcrumbs = true
   showSummary = true
   showCards = true
@@ -59,10 +67,14 @@ disableImageOptimization = false
 
 [taxonomy]
   showTermCount = true
+  showHero = true
+  heroStyle = "background"
   showBreadcrumbs = true
   cardView = true
 
 [term]
+  showHero = true
+  heroStyle = "background"
   showBreadcrumbs = true
   showTableOfContents = true
   groupByYear = true

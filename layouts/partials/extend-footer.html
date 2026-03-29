@@ -1,0 +1,55 @@
+<div id="vanta-bg"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var isDark = document.documentElement.classList.contains('dark');
+
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: isDark ? 0x3b82f6 : 0x2563eb,
+      backgroundColor: isDark ? 0x0f172a : 0xf8fafc,
+      points: 12,
+      maxDistance: 22,
+      spacing: 18,
+      showDots: true
+    });
+
+    // 监听主题切换
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.attributeName === 'class') {
+          var dark = document.documentElement.classList.contains('dark');
+          var bg = document.getElementById('vanta-bg');
+          if (bg && bg.__vpiVantaEffect) {
+            bg.__vpiVantaEffect.destroy();
+          }
+          VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: dark ? 0x3b82f6 : 0x2563eb,
+            backgroundColor: dark ? 0x0f172a : 0xf8fafc,
+            points: 12,
+            maxDistance: 22,
+            spacing: 18,
+            showDots: true
+          });
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+  });
+</script>

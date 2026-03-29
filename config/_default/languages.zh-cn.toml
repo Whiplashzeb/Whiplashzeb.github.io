@@ -2,7 +2,7 @@ disabled = false
 languageCode = "zh-CN"
 languageName = "中文"
 weight = 1
-title = "Whiplash's Blog"
+title = "王二的自留地"
 
 [params]
   displayName = "ZH"
