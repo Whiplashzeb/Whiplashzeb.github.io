@@ -1,0 +1,21 @@
+disabled = false
+languageCode = "zh-CN"
+languageName = "中文"
+weight = 1
+title = "Whiplash's Blog"
+
+[params]
+  displayName = "ZH"
+  isoCode = "zh-CN"
+  rtl = false
+  dateFormat = "2006-01-02"
+  description = "LLM / 摄影 / 写作 / 生活"
+
+[params.author]
+  name = "Whiplash"
+  image = "img/avatar.png"
+  headline = "LLM Algorithm Engineer & Photographer"
+  bio = "AI 搜索算法工程师，热爱摄影、吉他、阅读与徒步"
+  links = [
+    { github = "https://github.com/Whiplashzeb" },
+  ]

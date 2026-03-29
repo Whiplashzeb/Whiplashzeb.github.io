@@ -1,0 +1,24 @@
+[[main]]
+  name = "文章"
+  pageRef = "posts"
+  weight = 10
+
+[[main]]
+  name = "LLM"
+  pageRef = "categories/llm"
+  weight = 20
+
+[[main]]
+  name = "摄影"
+  pageRef = "categories/摄影"
+  weight = 30
+
+[[main]]
+  name = "标签"
+  pageRef = "tags"
+  weight = 40
+
+[[main]]
+  name = "关于"
+  pageRef = "about"
+  weight = 50
