@@ -12,10 +12,10 @@ title = "王二的自留地"
   description = "LLM / 摄影 / 写作 / 生活"
 
 [params.author]
-  name = "Whiplash"
+  name = "Wanger"
   image = "img/avatar.png"
   headline = "LLM Algorithm Engineer & Photographer"
-  bio = "AI 搜索算法工程师，热爱摄影、吉他、阅读与徒步"
+  bio = "逆流而上的勇气，漏船载酒的运气"
   links = [
     { github = "https://github.com/Whiplashzeb" },
   ]
