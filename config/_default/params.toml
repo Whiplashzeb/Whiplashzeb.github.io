@@ -50,6 +50,7 @@ mainSections = ["writing", "llm", "photography"]
   relatedContentLimit = 3
   showTaxonomies = true
   showWordCount = true
+  showComments = true
   sharingLinks = []
   showZenMode = true
 
