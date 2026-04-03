@@ -11,6 +11,18 @@
     position: relative;
     z-index: 1;
   }
+  /* content area frosted glass backdrop */
+  .max-w-prose {
+    background: rgba(248, 250, 252, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 12px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .dark .max-w-prose {
+    background: rgba(11, 17, 32, 0.2);
+  }
 </style>
 
 <!-- Cloudflare Web Analytics -->
