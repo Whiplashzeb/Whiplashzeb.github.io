@@ -18,4 +18,5 @@ title = "王二的自留地"
   bio = "逆流而上的勇气，漏船载酒的运气"
   links = [
     { github = "https://github.com/Whiplashzeb" },
+    { wechat = "javascript:void(0)" },
   ]

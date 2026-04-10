@@ -23,6 +23,30 @@
   .dark .max-w-prose {
     background: rgba(11, 17, 32, 0.2);
   }
+  /* WeChat QR code hover tooltip */
+  a[title="Wechat"] {
+    position: relative;
+  }
+  a[title="Wechat"]::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    width: 200px;
+    height: 200px;
+    background: url('/img/wechat-qrcode.jpg') center/contain no-repeat white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  a[title="Wechat"]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
 </style>
 
 <!-- Cloudflare Web Analytics -->
