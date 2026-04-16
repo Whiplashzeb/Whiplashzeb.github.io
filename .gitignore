@@ -4,3 +4,6 @@ resources/
 .DS_Store
 CLAUDE.md
 scripts/
+node_modules/
+package.json
+package-lock.json
