@@ -7,6 +7,8 @@ categories = ["摄影"]
 showTableOfContents = true
 +++
 
+![f/1.8 与 f/8 景深对比](feature-aperture-depth-comparison.png)
+
 > 前置知识提示：读这篇前，建议了解：曝光的本质、传感器信号、噪声底与溢出（见 #1-1）。
 
 ---
@@ -47,7 +49,7 @@ showTableOfContents = true
 
 还有个容易被忽略的细节：大多数镜头在最大光圈时，边缘画质比中心差不少；收两档左右往往是光学素质的甜蜜区。拍风光想要全画面锐利，`f/8` 通常比 `f/16` 更好——因为太小的光圈会触发**衍射（Diffraction）**，反而让整张照片发软。
 
-![f/1.8 与 f/8 景深对比](aperture-depth-comparison.png)
+![f/1.8 与 f/8 景深对比](feature-aperture-depth-comparison.png)
 
 *图：同一场景——f/1.8 背景虚化为光斑，f/8 背景建筑清晰可辨*
 

@@ -9,6 +9,8 @@ showTableOfContents = true
 
 {{< katex >}}
 
+![打分标准概念图](feature-scoring-concept.png)
+
 > 前置知识提示：读这篇前，建议了解：token、条件概率、链式法则（见第 1 篇）。
 
 ---
@@ -25,7 +27,7 @@ showTableOfContents = true
 
 所以我们需要一个分数，既奖励"猜对"，又奖励"猜得自信"。
 
-![打分标准概念图](scoring-concept.png)
+![打分标准概念图](feature-scoring-concept.png)
 
 *图：同样猜对"真"，模型 A 给 90% vs 模型 B 给 30%——概率越高，打分越高*
 

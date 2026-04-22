@@ -9,6 +9,8 @@ showTableOfContents = true
 
 {{< katex >}}
 
+![困惑度直觉概念图](feature-ppl-intuition.png)
+
 > 前置知识提示：读这篇前，建议了解：token、交叉熵、NLL（见第 1、2 篇）。
 
 ---
@@ -21,7 +23,7 @@ showTableOfContents = true
 
 困惑度（Perplexity, PPL）做的事情很简单：**把交叉熵翻译成一个更有直觉的数字——模型在每个位置平均在多少个 token 里犹豫。**
 
-![困惑度直觉概念图](ppl-intuition.png)
+![困惑度直觉概念图](feature-ppl-intuition.png)
 
 *图：PPL = 5.6 意味着模型在每个位置平均觉得有约 5.6 个 token 「差不多可能」——就像每道题都是 5.6 选 1*
 

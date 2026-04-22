@@ -7,6 +7,8 @@ categories = ["摄影"]
 showTableOfContents = true
 +++
 
+![暗部拉亮对比概念图](feature-dark-lift-comparison.png)
+
 > 前置知识提示：本篇是摄影系列的第一篇，零基础起步。你只需要会按快门，剩下的交给这篇文章。
 
 ### 模块导言：第一模块 · 曝光控制论
@@ -25,7 +27,7 @@ showTableOfContents = true
 
 这就是"亮"和"有细节"的区别。曝光真正在控制的不是照片的亮度——亮度后期随时能调——而是传感器收集到的**信号质量**。
 
-![暗部拉亮对比概念图](dark-lift-comparison.png)
+![暗部拉亮对比概念图](feature-dark-lift-comparison.png)
 
 *图：同一只猫的暗部——左侧"前期曝足"细节干净，右侧"后期拉亮"花纹和噪点一起被放大*
 

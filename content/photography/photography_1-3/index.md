@@ -9,6 +9,8 @@ showTableOfContents = true
 
 {{< katex >}}
 
+![光圈快门ISO的stop对应关系](feature-stop-equivalence-diagram.png)
+
 > 前置知识提示：读这篇前，建议了解：光圈、快门、ISO 的基本含义（见 #1-1、#1-2）。
 
 ---
@@ -41,7 +43,7 @@ showTableOfContents = true
 
 **每往右一步是 -1 档**（进光量减半），因为 f 值越大，光圈越小。不用硬背——只需要记位：**f 值乘 1.4 ≈ 少一档，除以 1.4 ≈ 多一档。**
 
-![光圈快门ISO的stop对应关系](stop-equivalence-diagram.png)
+![光圈快门ISO的stop对应关系](feature-stop-equivalence-diagram.png)
 
 *图：三个参数的一档对应关系——快门和 ISO 都是简单的二倍关系，光圈的 f 值则按 √2 递进*
 

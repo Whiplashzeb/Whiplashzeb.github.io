@@ -9,6 +9,8 @@ showTableOfContents = true
 
 {{< katex >}}
 
+![输入法猜词概念图](feature-input-prediction.png)
+
 > 前置知识提示：本篇是 LLM 系列的第一篇，零基础起步，不需要预备知识。如果你知道什么是概率，就能跟完全程。
 
 这一章要解决一个最根本的问题：**语言模型在数学上到底是个什么东西？**
@@ -29,7 +31,7 @@ showTableOfContents = true
 
 那问题来了：一整句话的概率，怎么算？
 
-![输入法猜词概念图](input-prediction.png)
+![输入法猜词概念图](feature-input-prediction.png)
 
 *图：给定"今天天气"，模型预测下一个词的概率排序*
 
