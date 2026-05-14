@@ -4,6 +4,7 @@ description = "语言模型不是在「理解语言」，而是用链式法则�
 date = 2026-04-10
 tags = ["LLM", "语言模型", "链式法则", "概率"]
 categories = ["LLM"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

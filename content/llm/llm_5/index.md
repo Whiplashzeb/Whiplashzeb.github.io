@@ -4,6 +4,7 @@ description = "模型只生产分布，把分布变成 token 的，是 decoding 
 date = 2026-05-03
 tags = ["LLM", "Decoding", "采样", "Autoregressive"]
 categories = ["LLM"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

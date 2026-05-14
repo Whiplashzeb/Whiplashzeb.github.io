@@ -1,0 +1,291 @@
+{{ define "main" }}
+  {{ .Scratch.Set "scope" "list" }}
+  {{ $enableToc := .Params.showTableOfContents | default (site.Params.list.showTableOfContents | default false) }}
+  {{ $showToc := and $enableToc (in .TableOfContents "<ul") }}
+
+  {{/* Hero */}}
+  {{ if site.Params.list.showHero | default false }}
+    {{ $heroStyle := print "hero/" site.Params.list.heroStyle ".html" }}
+    {{ if templates.Exists ( printf "partials/%s" $heroStyle ) }}
+      {{ partial $heroStyle . }}
+    {{ else }}
+      {{ partial "hero/basic.html" . }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Header */}}
+  <header>
+    {{ if .Params.showBreadcrumbs | default (site.Params.list.showBreadcrumbs | default false) }}
+      {{ partial "breadcrumbs.html" . }}
+    {{ end }}
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+    <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      {{ partial "article-meta/list.html" (dict "context" . "scope" "single") }}
+    </div>
+  </header>
+
+  {{/* Description (markdown content) */}}
+  {{ $tocMargin := cond $showToc "mt-12" "mt-0" }}
+  {{ $topClass := cond (hasPrefix site.Params.header.layout "fixed") "lg:top-[140px]" "lg:top-10" }}
+  <section class="{{ $tocMargin }} prose flex max-w-full flex-col dark:prose-invert lg:flex-row mb-10">
+    {{ if $showToc }}
+      <div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+        <div class="toc ps-5 print:hidden lg:sticky {{ $topClass }}">
+          {{ partial "toc.html" . }}
+        </div>
+      </div>
+    {{ end }}
+    <div class="min-w-0 min-h-0 max-w-prose w-full">
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{/* Article Grid */}}
+  {{ if gt .Pages 0 }}
+    {{ $cardView := .Params.cardView | default (site.Params.list.cardView | default false) }}
+    {{ $cardViewScreenWidth := .Params.cardViewScreenWidth | default (site.Params.list.cardViewScreenWidth | default false) }}
+    {{ $groupByYear := .Params.groupByYear | default (site.Params.list.groupByYear | default false) }}
+    {{ $orderByWeight := .Params.orderByWeight | default (site.Params.list.orderByWeight | default false) }}
+    {{ $groupByYear := and (not $orderByWeight) $groupByYear }}
+    {{ $groupBySeries := .Params.groupBySeries | default false }}
+
+    {{/* === groupBySeries: render as tab UI === */}}
+    {{ if $groupBySeries }}
+      {{ $seriesOrder := slice "主线" "论文里程碑" "经典作品拆解" "综述" "随笔" }}
+      {{ $seriesSlugs := dict "主线" "main" "论文里程碑" "papers" "经典作品拆解" "classics" "综述" "overview" "随笔" "essays" "其他" "other" }}
+      {{ $allPages := .Pages }}
+
+      {{/* Collect non-empty groups in priority order */}}
+      {{ $groups := slice }}
+      {{ $matchedURLs := slice }}
+      {{ range $key := $seriesOrder }}
+        {{ $pages := where $allPages "Params.series" "intersect" (slice $key) }}
+        {{ if gt (len $pages) 0 }}
+          {{ $sorted := $pages.ByDate.Reverse }}
+          {{ $groups = $groups | append (dict "key" $key "slug" (index $seriesSlugs $key) "pages" $sorted) }}
+          {{ range $sorted }}
+            {{ $matchedURLs = $matchedURLs | append .RelPermalink }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{/* Append leftover pages (no series, or series not in $seriesOrder) */}}
+      {{ $leftovers := slice }}
+      {{ range $allPages.ByDate.Reverse }}
+        {{ if not (in $matchedURLs .RelPermalink) }}
+          {{ $leftovers = $leftovers | append . }}
+        {{ end }}
+      {{ end }}
+      {{ if gt (len $leftovers) 0 }}
+        {{ $groups = $groups | append (dict "key" "其他" "slug" "other" "pages" $leftovers) }}
+      {{ end }}
+
+      <style>
+        .series-tab {
+          color: rgba(var(--color-neutral-600), 1);
+          border-bottom-color: transparent;
+        }
+        .dark .series-tab {
+          color: rgba(var(--color-neutral-400), 1);
+        }
+        .series-tab:hover {
+          color: rgba(var(--color-primary-600), 1);
+        }
+        .dark .series-tab:hover {
+          color: rgba(var(--color-primary-400), 1);
+        }
+        .series-tab--active {
+          color: rgba(var(--color-primary-600), 1);
+          border-bottom-color: rgba(var(--color-primary-500), 1);
+        }
+        .dark .series-tab--active {
+          color: rgba(var(--color-primary-400), 1);
+          border-bottom-color: rgba(var(--color-primary-300), 1);
+        }
+        .series-tab-count {
+          color: rgba(var(--color-neutral-500), 1);
+        }
+        .series-tab--active .series-tab-count {
+          color: inherit;
+          opacity: 0.7;
+        }
+      </style>
+
+      <div class="series-tabs mt-4 mb-6">
+        <nav class="flex flex-wrap gap-1 border-b border-neutral-200 dark:border-neutral-700" role="tablist" aria-label="文章系列">
+          {{ range $i, $g := $groups }}
+            <a href="#{{ $g.slug }}"
+               role="tab"
+               id="series-tab-{{ $g.slug }}"
+               data-tab="{{ $g.slug }}"
+               aria-controls="series-panel-{{ $g.slug }}"
+               aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
+               class="series-tab inline-flex items-center px-4 py-2 border-b-2 font-medium cursor-pointer transition-colors{{ if eq $i 0 }} series-tab--active{{ end }}"
+               style="text-decoration: none; margin-bottom: -1px;">
+              {{ $g.key }}
+              <span class="series-tab-count ms-2 text-sm font-normal">{{ len $g.pages }}</span>
+            </a>
+          {{ end }}
+        </nav>
+      </div>
+
+      {{ range $i, $g := $groups }}
+        <div id="series-panel-{{ $g.slug }}"
+             class="series-panel{{ if ne $i 0 }} hidden{{ end }}"
+             data-panel="{{ $g.slug }}"
+             role="tabpanel"
+             aria-labelledby="series-tab-{{ $g.slug }}">
+          {{ if $cardView }}
+            <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {{ range $g.pages }}
+                {{ partial "article-link/card.html" . }}
+              {{ end }}
+            </section>
+          {{ else }}
+            <section class="space-y-10 w-full">
+              {{ range $g.pages }}
+                {{ partial "article-link/simple.html" . }}
+              {{ end }}
+            </section>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <script>
+        (function() {
+          const tabs = document.querySelectorAll('.series-tab');
+          const panels = document.querySelectorAll('.series-panel');
+          if (!tabs.length) return;
+
+          function activate(slug, updateHash) {
+            let found = false;
+            tabs.forEach(function(t) {
+              const isActive = t.dataset.tab === slug;
+              t.classList.toggle('series-tab--active', isActive);
+              t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+              if (isActive) found = true;
+            });
+            if (!found) return false;
+            panels.forEach(function(p) {
+              p.classList.toggle('hidden', p.dataset.panel !== slug);
+            });
+            if (updateHash) {
+              history.replaceState(null, '', '#' + slug);
+            }
+            return true;
+          }
+
+          function activateFromHash() {
+            const slug = (location.hash || '').replace(/^#/, '');
+            if (slug && activate(slug, false)) return;
+            activate(tabs[0].dataset.tab, false);
+          }
+
+          tabs.forEach(function(t) {
+            t.addEventListener('click', function(e) {
+              e.preventDefault();
+              activate(this.dataset.tab, true);
+            });
+          });
+
+          activateFromHash();
+          window.addEventListener('hashchange', activateFromHash);
+        })();
+      </script>
+
+    {{/* === Default Blowfish behaviour (unchanged below) === */}}
+    {{ else if not $cardView }}
+      <section class="space-y-10 w-full">
+        {{ if not $orderByWeight }}
+          {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
+            {{ if $groupByYear }}
+              <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
+                {{ .Key }}
+              </h2>
+            {{ end }}
+            {{ range .Pages }}
+              {{ partial "article-link/simple.html" . }}
+            {{ end }}
+          {{ end }}
+        {{ else }}
+          {{ range (.Paginate (.Pages.ByWeight)).Pages }}
+            {{ partial "article-link/simple.html" . }}
+          {{ end }}
+        {{ end }}
+      </section>
+    {{/* else: is cardView */}}
+    {{ else }}
+      {{ if $groupByYear }}
+        {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
+          {{ if $cardViewScreenWidth }}
+            <div class="relative w-screen max-w-[1600px] px-[30px] start-[calc(max(-50vw,-800px)+50%)]">
+              <h2 class="mt-12 mb-3 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
+                {{ .Key }}
+              </h2>
+              <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+                {{ range .Pages }}
+                  {{ partial "article-link/card.html" . }}
+                {{ end }}
+              </section>
+            </div>
+          {{ else }}
+            <h2 class="mt-12 mb-3 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
+              {{ .Key }}
+            </h2>
+            <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {{ range .Pages }}
+                {{ partial "article-link/card.html" . }}
+              {{ end }}
+            </section>
+          {{ end }}
+        {{ end }}
+
+      {{/* else: not groupByYear */}}
+      {{ else }}
+        {{ if $cardViewScreenWidth }}
+          <div class="relative w-screen max-w-[1600px] px-[30px] start-[calc(max(-50vw,-800px)+50%)]">
+            <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+              {{ if not $orderByWeight }}
+                {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
+                  {{ range .Pages }}
+                    {{ partial "article-link/card.html" . }}
+                  {{ end }}
+                {{ end }}
+              {{ else }}
+                {{ range (.Paginate (.Pages.ByWeight)).Pages }}
+                  {{ partial "article-link/card.html" . }}
+                {{ end }}
+              {{ end }}
+            </section>
+          </div>
+        {{ else }}
+          <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {{ if not $orderByWeight }}
+              {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
+                {{ range .Pages }}
+                  {{ partial "article-link/card.html" . }}
+                {{ end }}
+              {{ end }}
+            {{ else }}
+              {{ range (.Paginate (.Pages.ByWeight)).Pages }}
+                {{ partial "article-link/card.html" . }}
+              {{ end }}
+            {{ end }}
+          </section>
+        {{ end }}{{/* End of cardViewScreenWidth */}}
+      {{ end }}{{/* End of groupByYear */}}
+    {{ end }}{{/* End of cardView */}}
+  {{/* else: .Pages not greater to zero */}}
+  {{ else }}
+    <section class="mt-10 prose dark:prose-invert">
+      <p class="py-8 border-t">
+        <em>{{ i18n "list.no_articles" | emojify }}</em>
+      </p>
+    </section>
+  {{ end }}
+
+  {{/* Pagination only for non-grouped views */}}
+  {{ if not (.Params.groupBySeries | default false) }}
+    {{ partial "pagination.html" . }}
+  {{ end }}
+{{ end }}

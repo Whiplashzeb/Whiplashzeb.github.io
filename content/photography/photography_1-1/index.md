@@ -4,6 +4,7 @@ description = "曝光不是「让照片变亮」，而是把场景亮度转化�
 date = 2026-04-10
 tags = ["摄影", "曝光", "信噪比", "传感器"]
 categories = ["摄影"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

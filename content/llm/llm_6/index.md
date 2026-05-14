@@ -4,6 +4,7 @@ description = "同一份分布，交给四种 decoding 策略，得到四种风�
 date = 2026-05-10
 tags = ["LLM", "Decoding", "采样", "Top-p", "Beam Search"]
 categories = ["LLM"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

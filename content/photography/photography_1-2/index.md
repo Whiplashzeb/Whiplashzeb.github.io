@@ -4,6 +4,7 @@ description = "曝光三要素每个都身兼两职——调节进光量的同�
 date = 2026-04-14
 tags = ["摄影", "曝光", "光圈", "快门", "ISO", "景深"]
 categories = ["摄影"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

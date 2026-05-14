@@ -4,6 +4,7 @@ description = "罗曼罗兰那句被讲滥了的话，难点不在「热爱」�
 date = 2026-04-22
 tags = ["随笔", "思辨", "罗曼罗兰", "大明王朝1566", "大医"]
 categories = ["写作"]
+series = ["随笔"]
 showTableOfContents = false
 +++
 

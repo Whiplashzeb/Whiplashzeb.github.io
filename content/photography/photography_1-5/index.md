@@ -4,6 +4,7 @@ description = "测光读数不是答案，只是相机给你的「中灰建议�
 date = 2026-05-03
 tags = ["摄影", "测光", "点测光", "曝光", "Tone Placement"]
 categories = ["摄影"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

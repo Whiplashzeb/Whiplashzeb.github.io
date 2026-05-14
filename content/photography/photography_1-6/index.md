@@ -4,6 +4,7 @@ description = "直方图不是美术评分，是相机给你的信号分布报�
 date = 2026-05-10
 tags = ["摄影", "曝光", "直方图", "ETTR", "Clipping"]
 categories = ["摄影"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

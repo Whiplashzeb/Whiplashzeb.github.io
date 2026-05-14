@@ -4,6 +4,7 @@ description = "从起源、发展到现状的系统性回顾——什么是 Harn
 date = 2026-03-31
 tags = ["Harness Engineering", "AI Agent", "Context Engineering", "Claude Code", "SWE-bench"]
 categories = ["LLM"]
+series = ["综述"]
 showTableOfContents = true
 +++
 

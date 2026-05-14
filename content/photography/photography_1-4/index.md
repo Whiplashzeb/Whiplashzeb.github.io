@@ -4,6 +4,7 @@ description = "相机测光会把场景往「中间亮度」去归一化——�
 date = 2026-04-26
 tags = ["摄影", "测光", "曝光补偿", "中灰假设", "点测光"]
 categories = ["摄影"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

@@ -4,6 +4,7 @@ description = "一档（stop）就是光量翻倍或减半——掌握这个乘�
 date = 2026-04-16
 tags = ["摄影", "曝光", "stop", "EV", "曝光补偿"]
 categories = ["摄影"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

@@ -4,6 +4,7 @@ description = "困惑度把交叉熵翻译成「模型平均在几个词里犹�
 date = 2026-04-21
 tags = ["LLM", "困惑度", "PPL", "Bits-per-byte", "评估指标"]
 categories = ["LLM"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

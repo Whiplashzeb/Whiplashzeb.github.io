@@ -4,6 +4,7 @@ description = "模型最后一步把向量翻译成词：logits 是原始分，s
 date = 2026-04-26
 tags = ["LLM", "Softmax", "Logits", "Temperature", "数值稳定"]
 categories = ["LLM"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

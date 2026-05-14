@@ -4,6 +4,7 @@ description = "训练语言模型的目标函数不是拍脑袋定的——从�
 date = 2026-04-14
 tags = ["LLM", "最大似然", "交叉熵", "KL散度", "损失函数"]
 categories = ["LLM"]
+series = ["主线"]
 showTableOfContents = true
 +++
 

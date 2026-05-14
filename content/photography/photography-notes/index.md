@@ -4,6 +4,7 @@ description = "系统梳理摄影核心知识体系：镜头与焦距、曝光�
 date = 2026-03-31
 tags = ["摄影基础", "焦距", "曝光", "测光", "景深", "虚化", "构图", "白平衡", "Zone System"]
 categories = ["摄影"]
+series = ["综述"]
 showTableOfContents = true
 +++
 
