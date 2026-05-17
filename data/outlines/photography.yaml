@@ -1,0 +1,30 @@
+title: 摄影主线
+intro: 摄影系统全栈方法论，9 模块 141 篇，从光子到意义的完整链路
+chapters:
+  - title: 一、曝光控制论：动态范围、Zone 与容错优先级
+    total: 18
+    published: [photography_1-1, photography_1-2, photography_1-3, photography_1-4, photography_1-5, photography_1-6, photography_1-7]
+  - title: 二、光照设计：环境光 × 闪光解耦 + 混合光治理
+    total: 14
+    published: []
+  - title: 三、镜头与成像：衍射 / 像差 / 景深 / 运动模糊的可诊断系统
+    total: 10
+    published: []
+  - title: 四、介质与噪声：胶片 / 数码 / 扫描的责任链与噪声地图
+    total: 11
+    published: []
+  - title: 五、色彩与曲线：Profile、LUT、曲线语言与同色异谱
+    total: 15
+    published: []
+  - title: 六、构图几何与注意力预算：把「好看」工程化
+    total: 16
+    published: []
+  - title: 七、叙事与编辑：三段式叙事 + 文本语境 + 序列节奏
+    total: 15
+    published: []
+  - title: 八、工作流与交付：版本化、模板化、输出一致性
+    total: 17
+    published: []
+  - title: 九、场景应用路由：把方法论落到具体场景
+    total: 25
+    published: []

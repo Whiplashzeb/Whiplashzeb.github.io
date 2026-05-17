@@ -9,7 +9,7 @@ buildFuture = false
 enableEmoji = true
 hasCJKLanguage = true
 
-mainSections = ["writing", "llm", "photography"]
+mainSections = ["writing", "llm", "llm-papers", "photography", "photo-classics"]
 
 [pagination]
   pagerSize = 12

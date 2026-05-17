@@ -1,5 +1,5 @@
 +++
-title = "采样策略拆解：Greedy / Beam / Top-k / Top-p"
+title = "6 采样策略拆解：Greedy / Beam / Top-k / Top-p"
 description = "同一份分布，交给四种 decoding 策略，得到四种风格、四种代价、四种适用场景。"
 date = 2026-05-10
 tags = ["LLM", "Decoding", "采样", "Top-p", "Beam Search"]

@@ -1,5 +1,5 @@
 +++
-title = "Logits、Softmax 与数值稳定：模型输出的「工程真相」"
+title = "4 Logits、Softmax 与数值稳定：模型输出的「工程真相」"
 description = "模型最后一步把向量翻译成词：logits 是原始分，softmax 转成概率，温度只是 logits 上的一次缩放。"
 date = 2026-04-26
 tags = ["LLM", "Softmax", "Logits", "Temperature", "数值稳定"]

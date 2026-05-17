@@ -1,0 +1,213 @@
+{{ $section := .Section }}
+{{ $outline := index site.Data.outlines $section }}
+{{ if $outline }}
+  {{ $totalPlanned := 0 }}
+  {{ $totalPublished := 0 }}
+  {{ range $outline.chapters }}
+    {{ $totalPlanned = add $totalPlanned .total }}
+    {{ $totalPublished = add $totalPublished (len .published) }}
+  {{ end }}
+
+  <style>
+    .series-outline {
+      margin: 0 0 2.5rem 0;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(var(--color-neutral-300), 0.5);
+      background: rgba(var(--color-neutral), 0.4);
+    }
+    .dark .series-outline {
+      border-color: rgba(var(--color-neutral-700), 0.6);
+      background: rgba(var(--color-neutral-800), 0.25);
+    }
+    .series-outline > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.875rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      user-select: none;
+      color: rgba(var(--color-neutral-800), 1);
+    }
+    .dark .series-outline > summary { color: rgba(var(--color-neutral-100), 1); }
+    .series-outline > summary::-webkit-details-marker,
+    .series-outline > summary::marker { display: none; content: ''; }
+    .series-outline-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.625rem;
+      flex-wrap: wrap;
+      flex: 1;
+      min-width: 0;
+    }
+    .series-outline-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .series-outline-total {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: rgba(var(--color-neutral-500), 1);
+      font-variant-numeric: tabular-nums;
+    }
+    .dark .series-outline-total { color: rgba(var(--color-neutral-400), 1); }
+    .series-outline-chevron {
+      flex-shrink: 0;
+      width: 1rem;
+      height: 1rem;
+      transition: transform 0.2s ease;
+      color: rgba(var(--color-neutral-400), 1);
+      transform: rotate(-90deg);
+    }
+    .series-outline[open] .series-outline-chevron {
+      transform: rotate(0deg);
+    }
+
+    .series-outline-body {
+      padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid rgba(var(--color-neutral-300), 0.4);
+    }
+    .dark .series-outline-body {
+      border-top-color: rgba(var(--color-neutral-700), 0.5);
+    }
+    .series-outline-intro {
+      font-size: 0.875rem;
+      color: rgba(var(--color-neutral-500), 1);
+      margin: 1rem 0 1.5rem;
+      line-height: 1.5;
+    }
+    .dark .series-outline-intro { color: rgba(var(--color-neutral-400), 1); }
+
+    .series-chapter {
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed rgba(var(--color-neutral-300), 0.35);
+    }
+    .series-chapter:last-child { border-bottom: 0; padding-bottom: 0.25rem; }
+    .dark .series-chapter {
+      border-bottom-color: rgba(var(--color-neutral-700), 0.4);
+    }
+    .series-chapter-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .series-chapter-title {
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: rgba(var(--color-neutral-700), 1);
+      line-height: 1.4;
+    }
+    .dark .series-chapter-title { color: rgba(var(--color-neutral-200), 1); }
+    .series-chapter-count {
+      font-size: 0.75rem;
+      color: rgba(var(--color-neutral-500), 1);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      padding-top: 0.125rem;
+    }
+    .series-chapter--full .series-chapter-count {
+      color: rgba(var(--color-primary-600), 1);
+      font-weight: 500;
+    }
+    .dark .series-chapter-count { color: rgba(var(--color-neutral-400), 1); }
+    .dark .series-chapter--full .series-chapter-count {
+      color: rgba(var(--color-primary-400), 1);
+    }
+
+    .series-chapter-bar {
+      height: 4px;
+      width: 100%;
+      background: rgba(var(--color-neutral-300), 0.6);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .dark .series-chapter-bar {
+      background: rgba(var(--color-neutral-700), 0.7);
+    }
+    .series-chapter-bar-fill {
+      height: 100%;
+      background: rgba(var(--color-primary-500), 1);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    .dark .series-chapter-bar-fill {
+      background: rgba(var(--color-primary-400), 1);
+    }
+
+    .series-chapter-articles {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+      padding-inline-start: 1rem;
+      border-inline-start: 2px solid rgba(var(--color-primary-500), 0.4);
+    }
+    .dark .series-chapter-articles {
+      border-inline-start-color: rgba(var(--color-primary-400), 0.35);
+    }
+    .series-chapter-articles li {
+      padding: 0.25rem 0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    .series-chapter-articles a {
+      color: rgba(var(--color-primary-600), 1);
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+      transition: border-color 0.15s;
+    }
+    .series-chapter-articles a:hover {
+      border-bottom-color: rgba(var(--color-primary-600), 0.6);
+    }
+    .dark .series-chapter-articles a {
+      color: rgba(var(--color-primary-400), 1);
+    }
+    .dark .series-chapter-articles a:hover {
+      border-bottom-color: rgba(var(--color-primary-400), 0.6);
+    }
+  </style>
+
+  <details class="series-outline">
+    <summary>
+      <span class="series-outline-head">
+        <span class="series-outline-title">全图 · {{ $outline.title }}</span>
+        <span class="series-outline-total">{{ $totalPublished }} / {{ $totalPlanned }} 篇已发</span>
+      </span>
+      <svg class="series-outline-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75.0 011.06.02L10 11.168l3.71-3.938a.75.75.0 111.08 1.04l-4.25 4.5a.75.75.0 01-1.08.0l-4.25-4.5a.75.75.0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </summary>
+    <div class="series-outline-body">
+      {{ with $outline.intro }}
+        <p class="series-outline-intro">{{ . }}</p>
+      {{ end }}
+      {{ range $outline.chapters }}
+        {{ $pubCount := len .published }}
+        {{ $pct := 0 }}
+        {{ if gt .total 0 }}
+          {{ $pct = div (mul $pubCount 100) .total }}
+        {{ end }}
+        <div class="series-chapter{{ if eq $pubCount .total }} series-chapter--full{{ end }}">
+          <div class="series-chapter-head">
+            <span class="series-chapter-title">{{ .title }}</span>
+            <span class="series-chapter-count">{{ $pubCount }} / {{ .total }}</span>
+          </div>
+          <div class="series-chapter-bar"><div class="series-chapter-bar-fill" style="width: {{ $pct }}%"></div></div>
+          {{ if gt $pubCount 0 }}
+            <ul class="series-chapter-articles">
+              {{ range $slug := .published }}
+                {{ $articlePage := site.GetPage (printf "/%s/%s" $section $slug) }}
+                {{ if $articlePage }}
+                  <li><a href="{{ $articlePage.RelPermalink }}">{{ $articlePage.Title }}</a></li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </details>
+{{ end }}

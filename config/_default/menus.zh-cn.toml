@@ -5,13 +5,41 @@
 
 [[main]]
   name = "LLM"
-  pageRef = "llm"
+  identifier = "llm-menu"
   weight = 20
+
+  [[main]]
+    name = "主线"
+    identifier = "llm-main"
+    parent = "llm-menu"
+    pageRef = "llm"
+    weight = 1
+
+  [[main]]
+    name = "论文里程碑"
+    identifier = "llm-papers"
+    parent = "llm-menu"
+    pageRef = "llm-papers"
+    weight = 2
 
 [[main]]
   name = "摄影"
-  pageRef = "photography"
+  identifier = "photography-menu"
   weight = 30
+
+  [[main]]
+    name = "主线"
+    identifier = "photography-main"
+    parent = "photography-menu"
+    pageRef = "photography"
+    weight = 1
+
+  [[main]]
+    name = "经典作品拆解"
+    identifier = "photo-classics"
+    parent = "photography-menu"
+    pageRef = "photo-classics"
+    weight = 2
 
 [[main]]
   name = "关于"

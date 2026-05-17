@@ -1,0 +1,30 @@
+title: LLM 论文里程碑
+intro: NLP 与 LLM 领域最重要的 100 篇论文，分 9 个篇章按时代脉络展开
+chapters:
+  - title: 第一篇章 · 经典 NLP 与统计学习时代（1986–2012）
+    total: 9
+    published: [llm_paper_1]
+  - title: 第二篇章 · 词嵌入与深度学习革命（2013–2016）
+    total: 13
+    published: []
+  - title: 第三篇章 · Transformer 的诞生与崛起（2017–2018）
+    total: 5
+    published: []
+  - title: 第四篇章 · 预训练语言模型的繁荣（2019–2020）
+    total: 12
+    published: []
+  - title: 第五篇章 · 大规模语言模型时代（2020–2023）
+    total: 28
+    published: []
+  - title: 第六篇章 · 多模态、推理与前沿探索（2023–2025）
+    total: 16
+    published: []
+  - title: 第七篇章 · 基础设施与深度学习基石
+    total: 6
+    published: []
+  - title: 第八篇章 · 语义理解、表示学习与信息抽取
+    total: 2
+    published: []
+  - title: 第九篇章 · 数据工程、可解释性与新兴方向
+    total: 9
+    published: []

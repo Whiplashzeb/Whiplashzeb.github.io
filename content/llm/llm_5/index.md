@@ -1,5 +1,5 @@
 +++
-title = "Decoding 总览：从「分布」到「生成」"
+title = "5 Decoding 总览：从「分布」到「生成」"
 description = "模型只生产分布，把分布变成 token 的，是 decoding policy。"
 date = 2026-05-03
 tags = ["LLM", "Decoding", "采样", "Autoregressive"]

@@ -1,0 +1,42 @@
+title: LLM 主线
+intro: 大语言模型的系统性梳理，13 章 129 篇，按章节顺序展开
+chapters:
+  - title: 一、语言建模：概率、Loss 与采样
+    total: 7
+    published: [llm_1, llm_2, llm_3, llm_4, llm_5, llm_6, llm_7]
+  - title: 二、表示与分词：Token、Embedding、位置
+    total: 9
+    published: []
+  - title: 三、Transformer 架构：训练视角 vs 推理视角
+    total: 10
+    published: []
+  - title: 四、数据工程：清洗、去重、配比与合成
+    total: 12
+    published: []
+  - title: 五、训练动力学：从「能收敛」到「能泛化」
+    total: 11
+    published: []
+  - title: 六、规模化与能力：Scaling、上下文长度与 ICL
+    total: 11
+    published: []
+  - title: 七、指令与对齐：Base vs Chat、模板与偏好
+    total: 12
+    published: []
+  - title: 七A、微调与适配（PEFT 路线）
+    total: 5
+    published: []
+  - title: 七B、Prompt 与上下文工程
+    total: 5
+    published: []
+  - title: 八、检索与增强：RAG、工具调用与 Agent
+    total: 15
+    published: []
+  - title: 九、推理系统工程：吞吐 / 延迟、量化与显存算术
+    total: 13
+    published: []
+  - title: 十、评测与观测：指标、陷阱与线上真实表现
+    total: 14
+    published: []
+  - title: 十A、安全与攻防（LLM Security）
+    total: 5
+    published: []

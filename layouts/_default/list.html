@@ -40,6 +40,11 @@
     </div>
   </section>
 
+  {{/* Series outline (foldable) */}}
+  {{ if eq .Kind "section" }}
+    {{ partial "series-outline.html" . }}
+  {{ end }}
+
   {{/* Article Grid */}}
   {{ if gt .Pages 0 }}
     {{ $cardView := .Params.cardView | default (site.Params.list.cardView | default false) }}
@@ -47,154 +52,8 @@
     {{ $groupByYear := .Params.groupByYear | default (site.Params.list.groupByYear | default false) }}
     {{ $orderByWeight := .Params.orderByWeight | default (site.Params.list.orderByWeight | default false) }}
     {{ $groupByYear := and (not $orderByWeight) $groupByYear }}
-    {{ $groupBySeries := .Params.groupBySeries | default false }}
 
-    {{/* === groupBySeries: render as tab UI === */}}
-    {{ if $groupBySeries }}
-      {{ $seriesOrder := slice "主线" "论文里程碑" "经典作品拆解" "综述" "随笔" }}
-      {{ $seriesSlugs := dict "主线" "main" "论文里程碑" "papers" "经典作品拆解" "classics" "综述" "overview" "随笔" "essays" "其他" "other" }}
-      {{ $allPages := .Pages }}
-
-      {{/* Collect non-empty groups in priority order */}}
-      {{ $groups := slice }}
-      {{ $matchedURLs := slice }}
-      {{ range $key := $seriesOrder }}
-        {{ $pages := where $allPages "Params.series" "intersect" (slice $key) }}
-        {{ if gt (len $pages) 0 }}
-          {{ $sorted := $pages.ByDate.Reverse }}
-          {{ $groups = $groups | append (dict "key" $key "slug" (index $seriesSlugs $key) "pages" $sorted) }}
-          {{ range $sorted }}
-            {{ $matchedURLs = $matchedURLs | append .RelPermalink }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-
-      {{/* Append leftover pages (no series, or series not in $seriesOrder) */}}
-      {{ $leftovers := slice }}
-      {{ range $allPages.ByDate.Reverse }}
-        {{ if not (in $matchedURLs .RelPermalink) }}
-          {{ $leftovers = $leftovers | append . }}
-        {{ end }}
-      {{ end }}
-      {{ if gt (len $leftovers) 0 }}
-        {{ $groups = $groups | append (dict "key" "其他" "slug" "other" "pages" $leftovers) }}
-      {{ end }}
-
-      <style>
-        .series-tab {
-          color: rgba(var(--color-neutral-600), 1);
-          border-bottom-color: transparent;
-        }
-        .dark .series-tab {
-          color: rgba(var(--color-neutral-400), 1);
-        }
-        .series-tab:hover {
-          color: rgba(var(--color-primary-600), 1);
-        }
-        .dark .series-tab:hover {
-          color: rgba(var(--color-primary-400), 1);
-        }
-        .series-tab--active {
-          color: rgba(var(--color-primary-600), 1);
-          border-bottom-color: rgba(var(--color-primary-500), 1);
-        }
-        .dark .series-tab--active {
-          color: rgba(var(--color-primary-400), 1);
-          border-bottom-color: rgba(var(--color-primary-300), 1);
-        }
-        .series-tab-count {
-          color: rgba(var(--color-neutral-500), 1);
-        }
-        .series-tab--active .series-tab-count {
-          color: inherit;
-          opacity: 0.7;
-        }
-      </style>
-
-      <div class="series-tabs mt-4 mb-6">
-        <nav class="flex flex-wrap gap-1 border-b border-neutral-200 dark:border-neutral-700" role="tablist" aria-label="文章系列">
-          {{ range $i, $g := $groups }}
-            <a href="#{{ $g.slug }}"
-               role="tab"
-               id="series-tab-{{ $g.slug }}"
-               data-tab="{{ $g.slug }}"
-               aria-controls="series-panel-{{ $g.slug }}"
-               aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
-               class="series-tab inline-flex items-center px-4 py-2 border-b-2 font-medium cursor-pointer transition-colors{{ if eq $i 0 }} series-tab--active{{ end }}"
-               style="text-decoration: none; margin-bottom: -1px;">
-              {{ $g.key }}
-              <span class="series-tab-count ms-2 text-sm font-normal">{{ len $g.pages }}</span>
-            </a>
-          {{ end }}
-        </nav>
-      </div>
-
-      {{ range $i, $g := $groups }}
-        <div id="series-panel-{{ $g.slug }}"
-             class="series-panel{{ if ne $i 0 }} hidden{{ end }}"
-             data-panel="{{ $g.slug }}"
-             role="tabpanel"
-             aria-labelledby="series-tab-{{ $g.slug }}">
-          {{ if $cardView }}
-            <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {{ range $g.pages }}
-                {{ partial "article-link/card.html" . }}
-              {{ end }}
-            </section>
-          {{ else }}
-            <section class="space-y-10 w-full">
-              {{ range $g.pages }}
-                {{ partial "article-link/simple.html" . }}
-              {{ end }}
-            </section>
-          {{ end }}
-        </div>
-      {{ end }}
-
-      <script>
-        (function() {
-          const tabs = document.querySelectorAll('.series-tab');
-          const panels = document.querySelectorAll('.series-panel');
-          if (!tabs.length) return;
-
-          function activate(slug, updateHash) {
-            let found = false;
-            tabs.forEach(function(t) {
-              const isActive = t.dataset.tab === slug;
-              t.classList.toggle('series-tab--active', isActive);
-              t.setAttribute('aria-selected', isActive ? 'true' : 'false');
-              if (isActive) found = true;
-            });
-            if (!found) return false;
-            panels.forEach(function(p) {
-              p.classList.toggle('hidden', p.dataset.panel !== slug);
-            });
-            if (updateHash) {
-              history.replaceState(null, '', '#' + slug);
-            }
-            return true;
-          }
-
-          function activateFromHash() {
-            const slug = (location.hash || '').replace(/^#/, '');
-            if (slug && activate(slug, false)) return;
-            activate(tabs[0].dataset.tab, false);
-          }
-
-          tabs.forEach(function(t) {
-            t.addEventListener('click', function(e) {
-              e.preventDefault();
-              activate(this.dataset.tab, true);
-            });
-          });
-
-          activateFromHash();
-          window.addEventListener('hashchange', activateFromHash);
-        })();
-      </script>
-
-    {{/* === Default Blowfish behaviour (unchanged below) === */}}
-    {{ else if not $cardView }}
+    {{ if not $cardView }}
       <section class="space-y-10 w-full">
         {{ if not $orderByWeight }}
           {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
@@ -213,7 +72,6 @@
           {{ end }}
         {{ end }}
       </section>
-    {{/* else: is cardView */}}
     {{ else }}
       {{ if $groupByYear }}
         {{ range (.Paginate (.Pages.GroupByDate "2006")).PageGroups }}
@@ -239,8 +97,6 @@
             </section>
           {{ end }}
         {{ end }}
-
-      {{/* else: not groupByYear */}}
       {{ else }}
         {{ if $cardViewScreenWidth }}
           <div class="relative w-screen max-w-[1600px] px-[30px] start-[calc(max(-50vw,-800px)+50%)]">
@@ -272,10 +128,9 @@
               {{ end }}
             {{ end }}
           </section>
-        {{ end }}{{/* End of cardViewScreenWidth */}}
-      {{ end }}{{/* End of groupByYear */}}
-    {{ end }}{{/* End of cardView */}}
-  {{/* else: .Pages not greater to zero */}}
+        {{ end }}
+      {{ end }}
+    {{ end }}
   {{ else }}
     <section class="mt-10 prose dark:prose-invert">
       <p class="py-8 border-t">
@@ -283,9 +138,5 @@
       </p>
     </section>
   {{ end }}
-
-  {{/* Pagination only for non-grouped views */}}
-  {{ if not (.Params.groupBySeries | default false) }}
-    {{ partial "pagination.html" . }}
-  {{ end }}
+  {{ partial "pagination.html" . }}
 {{ end }}
