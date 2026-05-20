@@ -9,7 +9,7 @@ enableCodeCopy = true
 
 disableImageOptimization = false
 
-mainSections = ["writing", "llm", "photography"]
+mainSections = ["writing", "llm", "llm-papers", "photography", "photo-classics"]
 # defaultBackgroundImage = "img/hero.jpg"
 # defaultFeaturedImage = "img/hero.jpg"
 
