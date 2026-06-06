@@ -3,7 +3,7 @@ intro: 摄影系统全栈方法论，9 模块 141 篇，从光子到意义的完
 chapters:
   - title: 一、曝光控制论：动态范围、Zone 与容错优先级
     total: 18
-    published: [photography_1-1, photography_1-2, photography_1-3, photography_1-4, photography_1-5, photography_1-6, photography_1-7, photography_1-8, photography_1-9]
+    published: [photography_1-1, photography_1-2, photography_1-3, photography_1-4, photography_1-5, photography_1-6, photography_1-7, photography_1-8, photography_1-9, photography_1-10]
   - title: 二、光照设计：环境光 × 闪光解耦 + 混合光治理
     total: 14
     published: []
