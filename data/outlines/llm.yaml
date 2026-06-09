@@ -6,7 +6,7 @@ chapters:
     published: [llm_1, llm_2, llm_3, llm_4, llm_5, llm_6, llm_7]
   - title: 二、表示与分词：Token、Embedding、位置
     total: 9
-    published: [llm_8, llm_9, llm_10]
+    published: [llm_8, llm_9, llm_10, llm_11]
   - title: 三、Transformer 架构：训练视角 vs 推理视角
     total: 10
     published: []
