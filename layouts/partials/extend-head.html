@@ -47,6 +47,44 @@
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
+  /* Xiaohongshu / Douyin dual-QR hover tooltips (LLM + 摄影 side by side) */
+  a[title="Xiaohongshu"], a[title="Douyin"] {
+    position: relative;
+  }
+  a[title="Xiaohongshu"]::after,
+  a[title="Douyin"]::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    box-sizing: border-box;
+    height: 250px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: left center, right center;
+    background-size: auto 100%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  a[title="Xiaohongshu"]::after {
+    width: 380px;
+    background-image: url('/img/qr-xiaohongshu-llm.jpg'), url('/img/qr-xiaohongshu-photo.jpg');
+  }
+  a[title="Douyin"]::after {
+    width: 360px;
+    background-image: url('/img/qr-douyin-llm.jpg'), url('/img/qr-douyin-photo.jpg');
+  }
+  a[title="Xiaohongshu"]:hover::after,
+  a[title="Douyin"]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
 </style>
 
 <!-- Cloudflare Web Analytics -->
