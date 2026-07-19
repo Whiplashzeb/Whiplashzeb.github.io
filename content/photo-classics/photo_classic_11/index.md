@@ -20,7 +20,7 @@ showTableOfContents = true
 
 ![Behind the Gare Saint-Lazare — Henri Cartier-Bresson, 1932](feature-behind-gare-saint-lazare.jpg)
 
-*图：Henri Cartier-Bresson，《圣拉扎尔站后面》（Behind the Gare Saint-Lazare），1932。原作 © Henri Cartier-Bresson / Magnum Photos，经授权使用；更多资料见 [MoMA 藏品页](https://www.moma.org/collection/works/98333) 与 [Fondation Henri Cartier-Bresson](https://www.henricartierbresson.org)。*
+*图：Henri Cartier-Bresson，《圣拉扎尔站后面》（Behind the Gare Saint-Lazare），1932。原作 © Henri Cartier-Bresson / Magnum Photos；更多资料见 [MoMA 藏品页](https://www.moma.org/collection/works/98333) 与 [Fondation Henri Cartier-Bresson](https://www.henricartierbresson.org)。*
 
 ## 二、一台新相机，一道看不清的缝
 
