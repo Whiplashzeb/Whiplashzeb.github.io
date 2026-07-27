@@ -4,20 +4,20 @@ chapters:
   - title: 一、曝光控制论：动态范围、Zone 与容错优先级
     total: 18
     published: [photography_1-1, photography_1-2, photography_1-3, photography_1-4, photography_1-5, photography_1-6, photography_1-7, photography_1-8, photography_1-9, photography_1-10, photography_1-11, photography_1-12, photography_1-13, photography_1-14, photography_1-15, photography_1-16, photography_1-17]
-  - title: 二、光照设计：环境光 × 闪光解耦 + 混合光治理
+  - title: 二、构图几何与注意力预算：把「好看」工程化
+    total: 16
+    published: [photography_2-1]
+  - title: 三、光照设计：环境光 × 闪光解耦 + 混合光治理
     total: 14
     published: []
-  - title: 三、镜头与成像：衍射 / 像差 / 景深 / 运动模糊的可诊断系统
+  - title: 四、镜头与成像：衍射 / 像差 / 景深 / 运动模糊的可诊断系统
     total: 10
     published: []
-  - title: 四、介质与噪声：胶片 / 数码 / 扫描的责任链与噪声地图
+  - title: 五、介质与噪声：胶片 / 数码 / 扫描的责任链与噪声地图
     total: 11
     published: []
-  - title: 五、色彩与曲线：Profile、LUT、曲线语言与同色异谱
+  - title: 六、色彩与曲线：Profile、LUT、曲线语言与同色异谱
     total: 15
-    published: []
-  - title: 六、构图几何与注意力预算：把「好看」工程化
-    total: 16
     published: []
   - title: 七、叙事与编辑：三段式叙事 + 文本语境 + 序列节奏
     total: 15
