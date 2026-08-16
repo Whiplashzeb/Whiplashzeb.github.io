@@ -260,7 +260,7 @@ SWE-bench 对 harness 问题很自觉——它专门用了一个最小化的 bas
 
 把散落在各处的硬数据集中一下：
 
-- [**Can.ac](http://Can.ac) 实验**：同一模型，不同 harness，性能从 6.7% → 68.3%（模型权重不变，10x 提升）
+- **[Can.ac](http://Can.ac) 实验**：同一模型，不同 harness，性能从 6.7% → 68.3%（模型权重不变，10x 提升）
 - **LangChain deepagents**：仅改 harness，Terminal Bench 2.0 从 52.8% → 66.5%（+13.7pp）
 - **Claude Opus 4.6 在 Terminal Bench 2.0**：在 Claude Code（模型 post-training 时的 harness）排名 #33，换到其他 harness 排名约 #5——说明模型会过度拟合训练时的 harness
 - **Anthropic 官方说法**：基础设施配置对编码 benchmark 的影响可达数个百分点，有时超过排行榜上顶尖模型之间的差距
