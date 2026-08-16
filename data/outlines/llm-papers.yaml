@@ -6,7 +6,7 @@ chapters:
     published: [llm_paper_1, llm_paper_2, llm_paper_3, llm_paper_4, llm_paper_5, llm_paper_6, llm_paper_7, llm_paper_8, llm_paper_9]
   - title: 第二篇章 · 词嵌入与深度学习革命（2013–2016）
     total: 13
-    published: [llm_paper_10, llm_paper_11, llm_paper_12, llm_paper_13, llm_paper_14]
+    published: [llm_paper_10, llm_paper_11, llm_paper_12, llm_paper_13, llm_paper_14, llm_paper_15]
   - title: 第三篇章 · Transformer 的诞生与崛起（2017–2018）
     total: 5
     published: []

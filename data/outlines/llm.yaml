@@ -9,7 +9,7 @@ chapters:
     published: [llm_8, llm_9, llm_10, llm_11, llm_12, llm_13, llm_14, llm_15, llm_16]
   - title: 三、Transformer 架构：训练视角 vs 推理视角
     total: 10
-    published: [llm_17, llm_18, llm_19, llm_20]
+    published: [llm_17, llm_18, llm_19, llm_20, llm_21]
   - title: 四、数据工程：清洗、去重、配比与合成
     total: 12
     published: []
