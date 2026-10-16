@@ -1,0 +1,74 @@
+{{/* Resolve once so progress counts and article links use the same pages. */}}
+{{ $section := .section }}
+{{ $outline := .outline }}
+{{ $chapters := slice }}
+{{ $seen := slice }}
+{{ $totalPlanned := 0 }}
+{{ $totalPublished := 0 }}
+{{ $now := now }}
+
+{{ if not $outline.series }}
+  {{ errorf "系列大纲 %s：缺少正式系列标识 series" $section }}
+{{ end }}
+
+{{ range $chapter := $outline.chapters }}
+  {{ $pages := slice }}
+  {{ if le $chapter.total 0 }}
+    {{ errorf "系列大纲 %s / %s：规划篇数 total 必须大于 0" $section $chapter.title }}
+  {{ end }}
+  {{ range $slug := $chapter.published }}
+    {{ if in $seen $slug }}
+      {{ errorf "系列大纲 %s：published 重复登记 %q，每篇只能归入一个章节" $section $slug }}
+    {{ else }}
+      {{ $seen = $seen | append $slug }}
+      {{ if not (findRE `^[a-zA-Z0-9][a-zA-Z0-9_-]*$` $slug) }}
+        {{ errorf "系列大纲 %s：无效 slug %q，应只填写本栏目文章目录名" $section $slug }}
+      {{ else }}
+        {{ $page := site.GetPage (printf "/%s/%s" $section $slug) }}
+        {{ if not $page }}
+          {{ $otherSections := slice }}
+          {{ range site.RegularPages }}
+            {{ if and .File (ne .Section $section) }}
+              {{ if eq .File.ContentBaseName $slug }}
+                {{ $otherSections = $otherSections | append .Section }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if $otherSections }}
+            {{ errorf "系列大纲 %s：%q 属于其他栏目 %v" $section $slug $otherSections }}
+          {{ else }}
+            {{ errorf "系列大纲 %s：找不到可发布页面 %q；检查页面是否缺失、slug、draft 和发布日期" $section $slug }}
+          {{ end }}
+        {{ else if or (ne $page.Section $section) (ne $page.Kind "page") }}
+          {{ errorf "系列大纲 %s：%q 不是本栏目的文章" $section $slug }}
+        {{ else if not (reflect.IsSlice $page.Params.series) }}
+          {{ errorf "系列大纲 %s：%q 的 series 必须是包含正式系列 %q 的数组" $section $slug $outline.series }}
+        {{ else if not (in $page.Params.series $outline.series) }}
+          {{ errorf "系列大纲 %s：%q 不属于正式系列 %q" $section $slug $outline.series }}
+        {{ else if or $page.Draft ($page.PublishDate.After $now) }}
+          {{ warnf "系列大纲 %s：预览中的 %q 尚为草稿或未到发布日期，不计入已发进度" $section $slug }}
+        {{ else }}
+          {{ $pages = $pages | append $page }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ if gt (len $pages) $chapter.total }}
+    {{ errorf "系列大纲 %s / %s：已发 %d 篇超过规划 %d 篇" $section $chapter.title (len $pages) $chapter.total }}
+  {{ end }}
+  {{ $chapters = $chapters | append (dict "title" $chapter.title "total" $chapter.total "pages" $pages) }}
+  {{ $totalPlanned = add $totalPlanned $chapter.total }}
+  {{ $totalPublished = add $totalPublished (len $pages) }}
+{{ end }}
+
+{{ range site.RegularPages }}
+  {{ if and (eq .Section $section) .File (reflect.IsSlice .Params.series) }}
+    {{ if and (in .Params.series $outline.series) (not .Draft) (not (.PublishDate.After $now)) }}
+      {{ if not (in $seen .File.ContentBaseName) }}
+        {{ errorf "系列大纲 %s：正式系列文章 %q 已可发布，但尚未登记到任何章节的 published" $section .File.ContentBaseName }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ return (dict "chapters" $chapters "totalPlanned" $totalPlanned "totalPublished" $totalPublished) }}

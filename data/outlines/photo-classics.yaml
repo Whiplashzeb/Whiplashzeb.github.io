@@ -1,30 +1,40 @@
 title: 摄影经典作品拆解
-intro: 用经典作品反向验证摄影系统工程学，9 模块 159 篇
+series: 经典作品拆解
+intro: 共 126 篇，承接已发布的 20 篇，以 11 个后续章节理解经典作品如何改变观看、创作与公共记忆
 chapters:
-  - title: 第一模块 · 奠基者与视觉语言
+  - title: 已发布作品 · 第 1–20 篇
     total: 20
     published: [photo_classic_1, photo_classic_2, photo_classic_3, photo_classic_4, photo_classic_5, photo_classic_6, photo_classic_7, photo_classic_8, photo_classic_9, photo_classic_10, photo_classic_11, photo_classic_12, photo_classic_13, photo_classic_14, photo_classic_15, photo_classic_16, photo_classic_17, photo_classic_18, photo_classic_19, photo_classic_20]
-  - title: 第二模块 · 光与影的建筑师
-    total: 20
+  - title: 一、日常的颜色与观看
+    total: 8
     published: []
-  - title: 第三模块 · 色彩的解放
-    total: 18
+  - title: 二、街头的关系与瞬间
+    total: 6
     published: []
-  - title: 第四模块 · 街道与人群的几何
-    total: 20
+  - title: 三、人物如何进入照片
+    total: 13
     published: []
-  - title: 第五模块 · 大地与时间
-    total: 16
+  - title: 四、景观如何成为判断
+    total: 10
     published: []
-  - title: 第六模块 · 人与人的距离
-    total: 18
+  - title: 五、照片如何进入公共记忆
+    total: 11
     published: []
-  - title: 第七模块 · 胶片 · 时间 · 介质
-    total: 16
+  - title: 六、把现场组织成报道
+    total: 11
     published: []
-  - title: 第八模块 · 实验、极限与边界
-    total: 16
+  - title: 七、照片之间的时间与情感
+    total: 12
     published: []
-  - title: 第九模块 · 数字时代的重新定义
-    total: 15
+  - title: 八、光、时间与材料
+    total: 11
+    published: []
+  - title: 九、表演、身份与虚构
+    total: 7
+    published: []
+  - title: 十、档案与摄影者的位置
+    total: 8
+    published: []
+  - title: 十一、图像怎样改变我们所见
+    total: 9
     published: []

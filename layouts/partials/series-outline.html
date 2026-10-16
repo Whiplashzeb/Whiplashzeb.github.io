@@ -1,12 +1,7 @@
 {{ $section := .Section }}
 {{ $outline := index site.Data.outlines $section }}
 {{ if $outline }}
-  {{ $totalPlanned := 0 }}
-  {{ $totalPublished := 0 }}
-  {{ range $outline.chapters }}
-    {{ $totalPlanned = add $totalPlanned .total }}
-    {{ $totalPublished = add $totalPublished (len .published) }}
-  {{ end }}
+  {{ $progress := partial "series/outline-data.html" (dict "section" $section "outline" $outline) }}
 
   <style>
     .series-outline {
@@ -174,7 +169,7 @@
     <summary>
       <span class="series-outline-head">
         <span class="series-outline-title">全图 · {{ $outline.title }}</span>
-        <span class="series-outline-total">{{ $totalPublished }} / {{ $totalPlanned }} 篇已发</span>
+        <span class="series-outline-total">{{ $progress.totalPublished }} / {{ $progress.totalPlanned }} 篇已发</span>
       </span>
       <svg class="series-outline-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M5.23 7.21a.75.75.0 011.06.02L10 11.168l3.71-3.938a.75.75.0 111.08 1.04l-4.25 4.5a.75.75.0 01-1.08.0l-4.25-4.5a.75.75.0 01.02-1.06z" clip-rule="evenodd"/>
@@ -184,8 +179,8 @@
       {{ with $outline.intro }}
         <p class="series-outline-intro">{{ . }}</p>
       {{ end }}
-      {{ range $outline.chapters }}
-        {{ $pubCount := len .published }}
+      {{ range $progress.chapters }}
+        {{ $pubCount := len .pages }}
         {{ $pct := 0 }}
         {{ if gt .total 0 }}
           {{ $pct = div (mul $pubCount 100) .total }}
@@ -198,11 +193,8 @@
           <div class="series-chapter-bar"><div class="series-chapter-bar-fill" style="width: {{ $pct }}%"></div></div>
           {{ if gt $pubCount 0 }}
             <ul class="series-chapter-articles">
-              {{ range $slug := .published }}
-                {{ $articlePage := site.GetPage (printf "/%s/%s" $section $slug) }}
-                {{ if $articlePage }}
-                  <li><a href="{{ $articlePage.RelPermalink }}">{{ $articlePage.Title }}</a></li>
-                {{ end }}
+              {{ range .pages }}
+                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
               {{ end }}
             </ul>
           {{ end }}
