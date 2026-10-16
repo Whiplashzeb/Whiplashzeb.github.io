@@ -1,30 +1,46 @@
 title: LLM 论文里程碑
-intro: NLP 与 LLM 领域最重要的 100 篇论文，分 9 个篇章按时代脉络展开
+series: 论文里程碑
+intro: 14 章 100 篇，从原作的问题、方法与证据理解现代 LLM 体系怎样形成
 chapters:
-  - title: 第一篇章 · 经典 NLP 与统计学习时代（1986–2012）
+  - title: 一、统计学习与神经语言模型
+    total: 8
+    published: [llm_paper_1, llm_paper_2, llm_paper_3, llm_paper_4, llm_paper_5, llm_paper_6, llm_paper_7, llm_paper_8]
+  - title: 二、表示、序列与训练基础
+    total: 12
+    published: [llm_paper_9, llm_paper_10, llm_paper_11, llm_paper_12, llm_paper_13, llm_paper_14, llm_paper_15, llm_paper_16, llm_paper_17, llm_paper_18, llm_paper_19, llm_paper_20]
+  - title: 三、子词接口与 Transformer
+    total: 4
+    published: [llm_paper_21]
+  - title: 四、预训练与迁移
     total: 9
-    published: [llm_paper_1, llm_paper_2, llm_paper_3, llm_paper_4, llm_paper_5, llm_paper_6, llm_paper_7, llm_paper_8, llm_paper_9]
-  - title: 第二篇章 · 词嵌入与深度学习革命（2013–2016）
-    total: 13
-    published: [llm_paper_10, llm_paper_11, llm_paper_12, llm_paper_13, llm_paper_14, llm_paper_15, llm_paper_16, llm_paper_17, llm_paper_18, llm_paper_19, llm_paper_20]
-  - title: 第三篇章 · Transformer 的诞生与崛起（2017–2018）
+    published: []
+  - title: 五、规模与训练数据
+    total: 10
+    published: []
+  - title: 六、架构与长上下文
+    total: 7
+    published: []
+  - title: 七、能力评测
+    total: 8
+    published: []
+  - title: 八、指令、偏好与适配
+    total: 9
+    published: []
+  - title: 九、推理与计算预算
+    total: 8
+    published: []
+  - title: 十、检索与上下文
     total: 5
     published: []
-  - title: 第四篇章 · 预训练语言模型的繁荣（2019–2020）
-    total: 12
+  - title: 十一、工具与 Agent
+    total: 4
     published: []
-  - title: 第五篇章 · 大规模语言模型时代（2020–2023）
-    total: 28
+  - title: 十二、生成与高效服务
+    total: 5
     published: []
-  - title: 第六篇章 · 多模态、推理与前沿探索（2023–2025）
-    total: 16
-    published: []
-  - title: 第七篇章 · 基础设施与深度学习基石
+  - title: 十三、多模态模型
     total: 6
     published: []
-  - title: 第八篇章 · 语义理解、表示学习与信息抽取
-    total: 2
-    published: []
-  - title: 第九篇章 · 数据工程、可解释性与新兴方向
-    total: 9
+  - title: 十四、可信性与机制解释
+    total: 5
     published: []
