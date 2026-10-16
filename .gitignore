@@ -3,7 +3,14 @@ resources/
 .hugo_build.lock
 .DS_Store
 CLAUDE.md
+AGENTS.md
 scripts/
 node_modules/
 package.json
 package-lock.json
+output/
+content/**/_short.md
+content/**/_wechat.md
+.env
+.env.*
+!.env.example
