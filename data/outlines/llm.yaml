@@ -13,7 +13,7 @@ chapters:
     published: [llm_17, llm_18, llm_19, llm_20, llm_21, llm_22, llm_23, llm_24, llm_25, llm_26]
   - title: 四、训练数据
     total: 10
-    published: []
+    published: [llm_27]
   - title: 五、训练与规模
     total: 14
     published: []
