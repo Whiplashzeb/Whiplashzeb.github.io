@@ -10,7 +10,7 @@ chapters:
     published: [llm_paper_9, llm_paper_10, llm_paper_11, llm_paper_12, llm_paper_13, llm_paper_14, llm_paper_15, llm_paper_16, llm_paper_17, llm_paper_18, llm_paper_19, llm_paper_20]
   - title: 三、子词接口与 Transformer
     total: 4
-    published: [llm_paper_21]
+    published: [llm_paper_21, llm_paper_22]
   - title: 四、预训练与迁移
     total: 9
     published: []
